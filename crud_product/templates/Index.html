@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Produk</title>
+</head>
+<body>
+    <center>
+        <h1>List Produk yang Bisa Dijual</h1>
+        <hr>
+        <a href="{% url 'insert_produk' %}">Buat Produk Baru</a>
+        <table border="1">
+            <tr>
+                <th>No</th>
+                <th>Id Produk</th>
+                <th>Nama Produk</th>
+                <th>Kategori</th>
+                <th>Harga</th>
+                <th>Status</th>
+                <th colspan="2">Action</th>
+            </tr>
+            {% for result in data %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{result.id_produk}}</td>
+                <td>{{result.nama_produk}}</td>
+                <td>{{result.kategori.nama_kategori}}</td>
+                <td>{{result.harga}}</td>
+                <td>{{result.status.nama_status}}</td>
+                <td><a href="edit/{{result.id_produk}}">Edit</a></td>
+                <td><a href="delete/{{result.id_produk}}" onclick="return confirm('Apakah kamu yakin akan menghapus {{result.nama_produk}}?')">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </center>
+
+    {% if messages %}
+        {% for message in messages %}
+             <script>
+                alert("{{ message }}");
+            </script>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,5 @@
+myworld/
+etl_product/.env
+etl_product/__pycache__
+crud_product/.env
+crud_product/crud_product/__pycache__
